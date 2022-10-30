@@ -1,14 +1,15 @@
-import { View, Text, Pressable, StyleSheet } from "react-native"
+import { Text, Pressable, StyleSheet } from "react-native"
 import React from "react"
 import { Colors } from "../Styles"
 
 export default function CommonPressable(props) {
-  const { text, onPress } = props
+  const { text, onPress, customStyle } = props
   return (
     <Pressable
       style={({ pressed }) => [
         { opacity: pressed ? 0.8 : 1 },
         Styles.pressable,
+        customStyle,
       ]}
       onPress={onPress}
     >

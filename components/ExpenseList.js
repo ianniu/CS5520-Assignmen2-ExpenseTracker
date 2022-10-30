@@ -1,12 +1,11 @@
 import { View, Text, FlatList, StyleSheet, Pressable } from "react-native"
 import React from "react"
 import { Colors } from "../Styles"
-const expenseData = [
-  { title: "coffee", id: "1", expense: "20" },
-  { title: "book", id: "2", expense: "100" },
-]
+import { useNavigation } from "@react-navigation/native"
 
-export default function ExpenseList() {
+export default function ExpenseList(props) {
+  const { expenses } = props
+  const navigation = useNavigation()
   const renderItem = ({ item, index }) => {
     return (
       <Pressable
@@ -14,16 +13,22 @@ export default function ExpenseList() {
           { opacity: pressed ? 0.8 : 1 },
           Styles.itemWrapper,
         ]}
+        onPress={() => {
+          navigation.navigate("Edit Expense", {
+            expenseId: item.id,
+            important: item.important,
+          })
+        }}
       >
-        <Text style={Styles.itemTitle}>{item.title}</Text>
+        <Text style={Styles.itemTitle}>{item.description}</Text>
         <View style={Styles.expenseWrapper}>
-          <Text style={Styles.expenseText}>{item.expense}</Text>
+          <Text style={Styles.expenseText}>{item.amount}</Text>
         </View>
       </Pressable>
     )
   }
 
-  return <FlatList data={expenseData} renderItem={renderItem} />
+  return <FlatList data={expenses} renderItem={renderItem} />
 }
 
 const Styles = StyleSheet.create({

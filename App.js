@@ -4,6 +4,7 @@ import { StyleSheet } from "react-native"
 import { Colors } from "./Styles"
 import Home from "./components/Home"
 import AddExpense from "./components/AddExpense"
+import EditExpense from "./components/EditExpense"
 
 const Stack = createNativeStackNavigator()
 
@@ -24,6 +25,7 @@ export default function App() {
           options={{ headerShown: false }}
         />
         <Stack.Screen name="Add Expense" component={AddExpense} />
+        <Stack.Screen name="Edit Expense" component={EditExpense} />
       </Stack.Navigator>
     </NavigationContainer>
   )
